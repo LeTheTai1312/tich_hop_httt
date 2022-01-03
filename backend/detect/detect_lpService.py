@@ -6,6 +6,7 @@ import time
 import mysql.connector
 from config import Settings
 # from model.model import *
+from DBConnector.detectConnector import detectConnector
 from fastapi import HTTPException
 from typing import List, Optional
 
@@ -15,6 +16,7 @@ import os
 class detectService:
     def __init__(self, ):
         self.config = Settings()
+        self.connector = detectConnector()
     
 
 
@@ -41,14 +43,7 @@ class detectService:
         # end
         end = time.time()
 
-        print('Model process on %.2f s' % (end - start))
+        # print('Model process on %.2f s' % (end - start))
 
-        # show image
-        # plt.imshow(image)
-        # plt.show()
-        # cv2.imshow('License Plate', image)
-        # if cv2.waitKey(0) & 0xFF == ord('q'):
-        #     exit(0)
-
-        # cv2.destroyAllWindows()
-        return {image}
+        
+        return connector.lp_insert(image)

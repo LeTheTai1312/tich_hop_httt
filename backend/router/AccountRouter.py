@@ -39,7 +39,7 @@ async def get_current_active_user(current_user: Account = Depends(accountService
 subject_regService = Subject_regService()
 class_regService = Class_regService()
 # detectService = detectService()
-detectConnector = detectConnector()
+detectService = detectService()
 
 @router.post("/detect")
 async def detect(image: UploadFile = File(...)):
@@ -58,13 +58,7 @@ async def detect(image: UploadFile = File(...)):
         f.close()
     # file = jsonable_encoder({"imagePath":file_name})
 
-    return detectConnector.do_detect(file_name)
-
-    # img = cv2.imread(file_name)
-
-    # cv2.imshow('License Plate', image)
-    # if cv2.waitKey(0) & 0xFF == ord('q'):
-    #     exit(0)
+    return detectService.do_detect(file_name)
 
 # @router.post("/subReg")
 # async def subReg(sub_reg: Sub_Reg, current_user: Account = Depends(get_current_active_user)):
