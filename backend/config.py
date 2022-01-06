@@ -10,4 +10,4 @@ class Settings(BaseSettings):
 
     db_username = "root"
     db_password = "admin1312"
-    db_name = "DAHTTT"
+    db_name = "thhttt"

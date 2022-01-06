@@ -12,6 +12,7 @@ from typing import List, Optional
 
 from detect.src.lp_recognition import E2E
 import os
+from datetime import datetime
 
 class detectService:
     def __init__(self, ):
@@ -26,7 +27,7 @@ class detectService:
         print(arg.parse_args())
         return arg.parse_args()
 
-    def do_detect(self, img_path:str):
+    async def do_detect_in(self, idCard:int, img_path:str):
 
         # read image
         img = cv2.imread(img_path)
@@ -38,12 +39,41 @@ class detectService:
         model = E2E()
 
         # recognize license plate
-        image = model.predict(img)
-
+        lp_number = model.predict(img)
+        time_in = str(datetime.now())
         # end
         end = time.time()
 
         # print('Model process on %.2f s' % (end - start))
+        print("-----------------------------------------------------------------------"+ time_in)
+        return await self.connector.lp_insert(idCard, lp_number, time_in)
 
-        
-        return connector.lp_insert(image)
+    async def do_detect_out(self, idCard:int, img_path:str):
+
+        # read image
+        img = cv2.imread(img_path)
+
+        # start
+        start = time.time()
+
+        # load model
+        model = E2E()
+
+        # recognize license plate
+        lp_number = model.predict(img)
+        time_out = str(datetime.now())
+        # end
+        end = time.time()
+
+        # print('Model process on %.2f s' % (end - start))
+        print("-----------------------------------------------------------------------"+ time_out)
+        return await self.connector.lp_checkCarOut(idCard, lp_number, time_out)
+    
+    async def getCarOutService(self, idCard: int):
+        return await self.connector.getCarOutConnector(idCard)
+
+    async def getNumberOfCarService(self):
+        return await self.connector.getNumberOfCarConnector()
+
+    async def warningMaxService(self):
+        return await self.connector.warningMaxConnector()
