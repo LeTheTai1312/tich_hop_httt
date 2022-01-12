@@ -78,6 +78,12 @@ class E2E(object):
         thresh = imutils.resize(thresh, width=400)
         thresh = cv2.medianBlur(thresh, 5)
 
+        _, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        # cv2.drawContours(thresh, contours, -1, (0, 255, 0), 2)
+        # cv2.imshow("ballons", thresh)
+        # if cv2.waitKey(0) & 0xFF == ord('q'):
+        #     exit(0)
+        # cv2.destroyAllWindows()
         # connected components analysis
         labels = measure.label(thresh, connectivity=2, background=0)
 
@@ -93,6 +99,13 @@ class E2E(object):
 
             # find contours from mask
             _, contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+            # cv2.drawContours(mask, contours, -1, (0, 255, 0), 2)
+            # cv2.imshow("ballons", mask)
+            # if cv2.waitKey(0) & 0xFF == ord('q'):
+            #     exit(0)
+            # cv2.destroyAllWindows()
+
 
             if len(contours) > 0:
                 contour = max(contours, key=cv2.contourArea)

@@ -30,6 +30,7 @@ class CNN_Model(object):
         self.model.compile(loss="categorical_crossentropy", optimizer=optimizers.Adam(1e-3), metrics=['acc'])
 
     def _build_model(self):
+        
         # CNN model
         self.model = Sequential()
         self.model.add(Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(28, 28, 1)))

@@ -1,4 +1,4 @@
-from DBConnector.account import AccountConnector
+# from DBConnector.account import AccountConnector
 from DBConnector.classRegister import classRegisterConnector
 from model.model import *
 from model.class_regModel import *
@@ -22,8 +22,11 @@ class detect:
         self.settings = Settings()
         
 
-    async def detect_lp(self, filename: str):
-        return await self.connector.classreg_insert(processed)
+    # async def detect_lp(self, filename: str):
+    #     return await self.connector.classreg_insert(processed)
 
-    async def class_del(self, classId:list[Optional[str]], current_user: Class_Reg):
-        return await self.connector.classdel(current_user.Id, classId)
+    # async def class_del(self, classId:list[Optional[str]], current_user: Class_Reg):
+    #     return await self.connector.classdel(current_user.Id, classId)
+
+    # async def regVehicleService(self, classId:list[Optional[str]], current_user: Class_Reg):
+    #     return await self.connector.regVehicl(current_user.Id, classId)
