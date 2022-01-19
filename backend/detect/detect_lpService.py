@@ -110,3 +110,15 @@ class detectService:
     
     async def getNumberOfMotobikeService(self):
         return await self.connector.getNumberOfMotobikeConnector()
+
+    async def deleteVehicleService(self, id: int):
+        return await self.connector.deleteVehicleConnector(id)
+    
+    async def getListAccountService(self):
+        return await self.connector.getListAccountConnector()
+
+    async def getListCarService(self):
+        return await self.connector.getListCarConnector()
+
+    async def getListMotobikeService(self):
+        return await self.connector.getListMotoConnector()

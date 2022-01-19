@@ -23,19 +23,16 @@ mydb = mysql.connector.connect(
 print(mydb)
 mycursor = mydb.cursor()
 
-#mycursor.execute("CREATE DATABASE DAHTTT")
-#mycursor.execute("SHOW DATABASES")
-#mycursor.execute("SHOW TABLES")
 try:
   mycursor.execute("CREATE TABLE biensoxe (idthe INT(32) ,\
-biensoxe VARCHAR(255) ,\
-loai_xe VARCHAR(255), timein VARCHAR(255), timeout VARCHAR(255) primary key (idthe))")
+  biensoxe VARCHAR(255) ,\
+  loai_xe VARCHAR(255), timein VARCHAR(255), timeout VARCHAR(255) primary key (idthe))")
 except:
   pass
 try:  
   mycursor.execute("CREATE TABLE dangky (id INT(32) ,\
-name VARCHAR(255),IDnumber VARCHAR(255) ,\
-vehicle VARCHAR(255), start VARCHAR(255), outOfDate VARCHAR(255), month INT(32) primary key (id))")
+  name VARCHAR(255),IDnumber VARCHAR(255) ,\
+  vehicle VARCHAR(255), start VARCHAR(255), outOfDate VARCHAR(255), month INT(32) primary key (id))")
 except:
   print("error")
 # sql = "UPDATE Subject WHERE subjectId = %s SET  credit=%s, programsemester=%s, schoolId=%s, note=%s)"

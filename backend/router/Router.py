@@ -105,3 +105,19 @@ async def deleteReg(id: int):
 @router.get("/checkRegister")
 async def checkRegister(id: int):
     return await detectService.checkRegisterService(id)
+
+@router.delete("/deleteVehicle")
+async def deleteVehicle(id: int):
+    return await detectService.deleteVehicleService(id)
+
+@router.get("/getListAccount")
+async def getListAccount():
+    return await detectService.getListAccountService()
+
+@router.get("/getListCar")
+async def getListCar():
+    return await detectService.getListCarService()
+
+@router.get("/getListMotobike")
+async def getListMotobike():
+    return await detectService.getListMotobikeService()

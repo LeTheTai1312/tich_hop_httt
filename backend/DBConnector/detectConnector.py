@@ -248,4 +248,82 @@ class detectConnector:
         mycursor.close()
         db.close()
         return count[0]
+
+
+    async def deleteVehicleConnector(self, id: int):
+        db = mysql.connector.connect(
+                                            host="localhost",
+                                            user=self.config.db_username,
+                                            password=self.config.db_password,
+                                            database=self.config.db_name
+                                            )     
+        mycursor = db.cursor()
+        try:
+            mycursor.execute("DELETE FROM biensoxe WHERE idthe = %s", (id,))
+            db.commit()
+        except mysql.connector.Error as error:
+            print("Failed to insert record to database rollback: {}".format(error))
+            db.rollback()
+        mycursor.close()
+        db.close()
+        return {"xóa thành Công idCard: " + str(id)}
+
+    async def getListAccountConnector(self, ):
+        db = mysql.connector.connect(
+                                            host="localhost",
+                                            user=self.config.db_username,
+                                            password=self.config.db_password,
+                                            database=self.config.db_name
+                                            )     
+        mycursor = db.cursor()
+        try:
+            mycursor.execute("SELECT * FROM dangky", ())
+            L = mycursor.fetchall()
+            db.commit()
+        except mysql.connector.Error as error:
+            print("Failed to insert record to database rollback: {}".format(error))
+            db.rollback()
+        mycursor.close()
+        db.close()
+        return L
+
+    async def getListCarConnector(self, ):
+        db = mysql.connector.connect(
+                                            host="localhost",
+                                            user=self.config.db_username,
+                                            password=self.config.db_password,
+                                            database=self.config.db_name
+                                            )     
+        mycursor = db.cursor()
+        try:
+            mycursor.execute("SELECT * FROM biensoxe where loai_xe = %s", ("car",))
+            L = mycursor.fetchall()
+            db.commit()
+        except mysql.connector.Error as error:
+            print("Failed to insert record to database rollback: {}".format(error))
+            db.rollback()
+        mycursor.close()
+        db.close()
+        return L
+
+    async def getListMotoConnector(self, ):
+        db = mysql.connector.connect(
+                                            host="localhost",
+                                            user=self.config.db_username,
+                                            password=self.config.db_password,
+                                            database=self.config.db_name
+                                            )     
+        mycursor = db.cursor()
+        try:
+            mycursor.execute("SELECT * FROM biensoxe where loai_xe = %s", ("motobike",))
+            L = mycursor.fetchall()
+            db.commit()
+        except mysql.connector.Error as error:
+            print("Failed to insert record to database rollback: {}".format(error))
+            db.rollback()
+        mycursor.close()
+        db.close()
+        return L
+
+
         

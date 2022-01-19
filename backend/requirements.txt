@@ -8,7 +8,7 @@ starlette
 requests~=2.25.1
 aiofiles
 Jinja2
-passlib[bcrypt]
+# passlib[bcrypt]
 python-jose[cryptography]
 numpy
 Pillow
